@@ -19,8 +19,8 @@ class Solution:
             if node.right:
                 queue.append((col + 1, row + 1, node.right))        
         result = []
-        for _, nodes in sorted( vertical_levels.items(), key=lambda item: item[0]):
-           result.append([val for _, val in sorted(nodes)])  
+        for _, nodes in sorted( vertical_levels.items(), key=lambda item: item[0]):#sort according to their vertical level
+           result.append([val for _, val in sorted(nodes)]) #if same level has multiple node then sort ascending order 
         return result
 
 #Using DFS (preorder traversal)
