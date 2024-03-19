@@ -13,6 +13,8 @@ class Solution:
     #Function to return a list of nodes visible from the top view 
     #from left to right in Binary Tree.
     def topView(self,root):
+        if not root:
+            return[]
         result = []
         vertical_levels = defaultdict(int)
         queue = [(root, 0)]
