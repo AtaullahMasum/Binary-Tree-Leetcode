@@ -15,6 +15,6 @@ class Solution:
             return right
         elif not right:
             return left
-        else:
+        else: # both are not none we can found ancestor
             return root
         
