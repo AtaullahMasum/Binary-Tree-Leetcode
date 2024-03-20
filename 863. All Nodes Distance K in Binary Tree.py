@@ -4,7 +4,8 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+from collections import deque
+from types import List, TreeNode
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         parent = {}
