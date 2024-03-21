@@ -36,4 +36,5 @@ class Solution:
         root.right = self.buildTreeInPost(inorder, inRoot + 1, inEnd, postorder, postStart + numLeft, postEnd - 1)
 
         return root
-        
+     def buildTree(self, inorder, postorder):
+        return self.buildTreeInPost(inorder, 0, len(inorder) - 1, postorder, 0, len(postorder) - 1)
