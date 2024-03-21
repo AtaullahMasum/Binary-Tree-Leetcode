@@ -39,8 +39,26 @@ class Solution:
         ordermap = OrderedDict()
         for i, value in enumerate(inorder):
             ordermap[value] = i
-        for i in range(len(inorder)):
-            ordermap[inorder[i]] = i
+
         root = self.buildTreePreIn(preorder, 0, len(preorder)-1, inorder, 0, len(inorder)-1, ordermap)
+        return root
+# not using ordermap
+
+from collections import OrderedDict
+class Solution:
+    def buildTreePreIn(self, preorder, preStart, preEnd, inorder, inStart, inEnd):
+        if preStart > preEnd or inStart > inEnd:
+            return None
+        root = TreeNode(preorder[preStart])
+        inRoot = inorder.index(root.val)
+        numsLeft = inRoot - inStart
+        root.left = self.buildTreePreIn(preorder, preStart+1, preStart+numsLeft, inorder, inStart, inRoot-1)
+        root.right = self.buildTreePreIn(preorder, preStart+numsLeft+1, preEnd, inorder, inRoot+1, inEnd)
+        return root
+
+
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        
+        root = self.buildTreePreIn(preorder, 0, len(preorder)-1, inorder, 0, len(inorder)-1)
         return root
         
