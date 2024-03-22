@@ -40,3 +40,24 @@ class Solution:
             if stack:
                 curr.right = stack[-1]
             curr.left = None
+#using morris traversal
+class Solution:
+    def __init__(self):
+        self.prev = None
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        if not root:
+            return 
+
+        curr = root
+        while curr:
+            if curr.left:
+                prev = curr.left
+                while prev.right:
+                    prev = prev.right
+                prev.right = curr.right
+                curr.right = curr.left
+                curr.left = None
+            curr = curr.right
