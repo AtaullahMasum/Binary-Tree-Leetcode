@@ -22,4 +22,46 @@ class Solution:
             if node.right:
                 queue.append(node.right)
         return False
-    
+#Using Binary Search Tree Iterator
+class Solution:
+    class BSTIterator:
+
+        def __init__(self, root: Optional[TreeNode], reverse):
+            self.stack = []
+            self.reverse = reverse
+            self.pushAll(root)
+        def next(self) -> int:
+            node = self.stack.pop()
+            if not self.reverse:
+                self.pushAll(node.right)
+            else:
+                self.pushAll(node.left)
+            return node.val
+
+        def hasNext(self) -> bool:
+            return len(self.stack) > 0
+        def pushAll(self, node):
+            while node:
+                self.stack.append(node)
+                if not self.reverse:
+                    node = node.left
+                else:
+                    node = node.right
+                    
+            
+
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        if not root :
+            return False
+        l= Solution.BSTIterator(root, False)
+        r= Solution.BSTIterator(root, True)
+        i = l.next()
+        j = r.next()
+        while i < j:
+            if i + j == k:
+                return True
+            if i + j < k:
+                i= l.next()
+            else:
+                j = r.next()
+        return False
